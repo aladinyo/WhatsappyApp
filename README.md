@@ -6,9 +6,9 @@ it allows you to send messages talk with people and serach for them and many mor
 https://whatsappy-app.web.app/
 
 # Preview
-![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png?raw=true)
-![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview2.png?raw=true)
-![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview3.png?raw=true)
+![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png)
+![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview2.png)
+![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview3.png)
 
 # Features of the app
 * Messaging users in real time.
@@ -33,11 +33,11 @@ https://whatsappy-app.web.app/
 * Finally you can click on the arrow down button at the home page and the web app is installed in your device.
 
 # Development
-In order to run the app setup a firebase project the navigate to "src/firebase" and put your config object there and then go to your project settings in firebase then get service account file from there and go put it on "backend" folder.
+In order to run the app setup a firebase project then navigate to "src/firebase" and put your config object there and then go to your project settings in firebase then get a service account file from there and go put it on "backend" folder.
 Then setup an algolia search project then put your keys in "backend/index.js" and "src/Sidebar.js".
 # Running the app
 After setting up the project in the root folder run "npm run start" to run the frontend and then navigate to "backend" folder and run "npm run index.js" to run the backend.
 # building the app
 To build the app run in the root folder "npm run build" you get the production code of your frontend in the build folder you can use it to host the app (you can set up firebase hosting for that) also you can host the backend folder in a node js hosting platform like heroku just make sure that your hosting service will run a worker (npm run index.js).
 
-## Thank you so much for checking this don't forget to put a star to encourage us.
+## Thank you so much for checking this project this don't forget to put a star to encourage us.
