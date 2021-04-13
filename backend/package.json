@@ -1,0 +1,21 @@
+{
+  "name": "fcm-with-nodejs",
+  "version": "1.0.0",
+  "description": "Testing Firebase cloud messaging with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "firebase",
+    "nodejs"
+  ],
+  "author": "Alaa Eddine Boubekeur",
+  "license": "ISC",
+  "dependencies": {
+    "algoliasearch": "^4.8.6",
+    "firebase": "^8.2.9",
+    "firebase-admin": "^9.5.0",
+    "firebase-functions": "^3.13.2"
+  }
+}

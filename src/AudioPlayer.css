@@ -1,0 +1,134 @@
+.audioplayer {
+	width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.audioplayer .MuiSvgIcon-root {
+    transform: scale(2);
+    color: #a9a9a9;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.audioplayer .pause {
+	transform: scale(1.7);
+}
+
+.audioplayer > div {
+	width: calc(100% - 48px);
+	height: 15px;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.audioplayer__slider {
+	-webkit-appearance: none; 
+	-moz-appearance: none; 
+	appearance: none;
+	height: 5px;
+	width: 100%; 
+	background: #00000030;
+	border-radius: 2.5px;
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+
+.audioplayer__slider:focus {
+	outline: none;
+}
+
+.audioplayer__slider--played {
+	height: 5px; 
+	background: #a9a9a9;
+	border-radius: 2.5px;
+	border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+	position: absolute;
+	left: 0;
+	z-index: 2;
+}
+
+.audioplayer__slider::-webkit-slider-thumb {
+	-webkit-appearance: none; 
+	-moz-appearance: none; 
+	appearance: none; 
+	width: 15px; 
+	height: 15px; 
+	background: #a9a9a9; 
+	cursor: pointer; 
+	border-radius: 50%;
+	border: none; 
+	position: relative;
+	z-index: 5;
+}
+
+.audioplayer__slider::-webkit-slider-thumb:active {
+	transform: scale(1.25);
+}
+
+.audioplayer__slider::-moz-range-thumb {
+	width: 15px; 
+	height: 15px; 
+	background: #a9a9a9; 
+	cursor: pointer; 
+	border-radius: 50%;
+	border: none;
+}
+
+.audioplayer__slider::-moz-range-thumb:active {
+	transform: scale(1.25);
+}
+
+.audioplayer2 .audioplayer__slider::-webkit-slider-thumb  {
+	background: #06D755;
+}
+
+.audioplayer2 .audioplayer__slider::-moz-range-thumb {
+	background: #06D755;
+}
+
+.audioplayer2 .audioplayer__slider--played {
+	background: #06D755;
+}
+
+
+.audioplayer__played .audioplayer__slider::-webkit-slider-thumb  {
+	background: #2ab5eb;
+}
+
+.audioplayer__played .audioplayer__slider::-moz-range-thumb {
+	background: #2ab5eb;
+}
+
+.audioplayer__played .audioplayer__slider--played {
+	background: #2ab5eb;
+}
+
+.audioplayer__time {
+	margin-right: 10px;
+	margin-left: 2px;
+	min-width: 35px;
+	display: inline-block;
+	font-size: 14px !important;
+}
+
+.audioplayer .MuiCircularProgress-root {
+	width: 25.39px !important;
+	height: 24px !important;
+	margin-right: 15px;
+	color: #a9a9a9;
+}
+
+.audioplayer .MuiCircularProgress-root .MuiCircularProgress-svg {
+	transform: scale(1.1);
+	width: 25.375px;
+	height: 25.375px;
+}
+
+/*#33d9ff*/

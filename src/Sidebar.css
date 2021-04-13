@@ -1,0 +1,158 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 0.30;
+    width: 30%;
+    position: relative;
+    background-color: white;
+}
+
+.sidebar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-right: 1px solid lightgrey;
+    background-color: #ededed;
+}
+
+.sidebar__header--left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 68%;
+}
+
+.sidebar__header--left h4 {
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.sidebar__header--right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 120px;
+}
+
+.sidebar__header--right > .MuiSvgIcon-root {
+    margin-right: 2vw;
+    font-size: 24px !important;
+}
+
+.sidebar__search {
+    display: flex;
+    align-items: center;
+    background-color: #f6f6f6;
+    padding: 10px;
+    border-right: 1px solid lightgrey;
+}
+
+.sidebar__search--container  {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 35px;
+    box-shadow: 0px 0px 8px 0px #00000016;
+    /*border: 1px solid #00000016;*/
+    border-radius: 20px;
+    padding-right: 13px;
+}
+
+.sidebar__search--container > .MuiSvgIcon-root {
+    color: grey;
+    padding: 10px;
+    box-sizing: content-box;
+}
+
+.sidebar__search--container > input {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+    margin-left: 0px;
+    width: 100%;
+}
+
+.sidebar__search--container > input:focus {
+    outline: none;
+}
+
+.sidebar__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ededed;
+    border-right: 1px solid lightgrey;
+}
+
+.sidebar__menu > a, .sidebar__menu > div {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding-top: 15px;
+    cursor: pointer;
+}
+
+.sidebar__menu   div {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.sidebar__menu div > .MuiSvgIcon-root {
+    fill:#0000008a;
+} 
+
+.sidebar__menu div > .sidebar__menu--line {
+    opacity: 0;
+    width: 100%;
+    height: 3px;
+    background: #0000008a;
+    margin-top: 5px;
+}
+
+.sidebar__menu > .sidebar__menu--selected > div > .sidebar__menu--line {
+    opacity: 1;
+}
+
+.sidebar__chat--container {
+    flex: 1;
+    background-color: white;
+    overflow: scroll;
+    position: relative;
+}
+
+.side {
+    transform: scale(1) !important;
+}
+
+@media (max-width: 760px) {
+    .sidebar { 
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform: scale(1.2);
+        transition: transform 250ms cubic-bezier(0.37, 0, 0.63, 1) !important;
+    }
+
+    .sidebar__header {
+        border: none;
+    }
+
+    .sidebar__search {
+        border: none;
+    }
+
+    .sidebar__menu {
+        border: none;
+    }
+}

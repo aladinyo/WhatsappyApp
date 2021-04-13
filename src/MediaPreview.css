@@ -1,0 +1,63 @@
+.mediaPreview {
+	position: absolute;
+	top: 60px;
+	left: 0;
+	background-color: #00000026;
+	width: 100%;
+	height: calc(100% - 68px);
+	z-index: 4;
+	opacity: 0;
+	animation: opacity-in 300ms ease forwards ;
+}
+
+.mediaPreview .MuiSvgIcon-root {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+}
+
+.mediaPreview img {
+	max-width: 80%;
+	max-height: 80%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(calc(-50% - 24px)) scale(0.8);
+	animation: scale-in 500ms forwards;
+}
+
+@keyframes opacity-out {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes opacity-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes scale-in {
+	from {
+		transform: translateX(-50%) translateY(calc(-50% - 24px)) scale(0.8);
+	}
+	to {
+		transform: translateX(-50%) translateY(calc(-50% - 24px)) scale(1);
+	}
+}
+
+@media (min-width: 761px) {
+	.mediaPreview {
+		top: 68px
+	}
+} 

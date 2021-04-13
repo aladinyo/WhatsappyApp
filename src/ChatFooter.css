@@ -1,0 +1,171 @@
+.chat__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    background-color: transparent;
+    z-index: 1;
+    padding: 0 10px;
+    height: 54px;
+    position: absolute;
+    width: calc(100% + 56px);
+    bottom :0;
+    z-index: 5;
+    transform: translateZ(456px);
+}
+
+.chat__footer > form {
+    width: 100%;
+    display: flex;
+}
+
+.send__btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #06D755;
+    box-shadow: 0px 0px 2px 0px #0000005e;
+    border: none;
+    transition: transform 150ms;
+    transform: scale(1);
+    cursor: pointer;
+}
+
+.send__btn:active {
+    transform: scale(0.75)
+}
+
+.send__btn:focus {
+    outline: none;
+}
+
+.send__btn svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.send__btn svg:nth-child(1) {
+    opacity: 0;
+    transform: translateX(-48%) translateY(-50%);
+}
+
+.chat__footer > .MuiSvgIcon-root {
+    color: gray;
+    box-sizing: content-box;
+}
+
+.chat__footer > form > input {
+    height: 44px;
+    border-radius: 31px;
+    padding-left: 20px;
+    border: none;
+    font-size: 15px;
+    margin-right: 10px;
+    padding-right: 20px;
+    box-shadow: 0px 0px 2px 0px #0000003b;
+    font-family: Roboto, sans-serif;
+    transition: all 300ms;
+    width: calc(100% - 112px);
+    /*112px 56px*/
+    position: relative;
+}
+
+.chat__footer > form > input:focus {
+    outline: none;
+}
+
+.send__animate-enter, .send__animate2-enter {
+    opacity: 0 !important;
+    transform: scale(0.8) translateX(-58%) translateY(-58%) !important;
+}
+
+.send__animate-enter-active, .send__animate2-enter-active {
+    opacity: 1 !important;
+    transform: scale(1) translateX(-50%) translateY(-50%) !important;
+    transition: opacity 200ms, transform 200ms !important;
+    transition-delay: 200ms !important; 
+}
+
+.send__animate-enter-done, .send__animate2-enter-done {
+    opacity: 1 !important;
+}
+
+.send__animate-exit, .send__animate2-exit {
+    opacity: 1 !important;
+    transform: scale(1) translateX(-50%) translateY(-50%) !important;
+}
+
+.send__animate-exit-active, .send__animate2-exit-active {
+    opacity: 0 !important;
+    transform: scale(0.8) translateX(-58%) translateY(-58%) !important;
+    transition: opacity 200ms, transform 200ms !important;
+}
+
+.send__animate-exit-done, .send__animate2-exit-done {
+    opacity: 0 !important;
+}
+
+.send__animate2-enter {
+    transform: scale(0.8) translateX(-58%) translateY(-58%) !important;
+}
+
+.send__animate2-enter-active {
+    transform: scale(1) translateX(-47%) translateY(-50%) !important;
+}
+
+.send__animate2-exit {
+    transform: scale(1) translateX(-47%) translateY(-50%) !important;
+}
+
+.send__animate2-exit-active {
+    transform: scale(0.8) translateX(-57%) translateY(-58%) !important;   
+}
+
+.record {
+    opacity: 0;
+    transition: opacity 300ms;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    right: 86px;
+    width: 135px;
+}
+
+.record > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 53px;
+}
+
+.record__redcircle {
+    opacity: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #F21D2F;
+    animation: animate-record-circle 500ms infinite alternate;
+}
+
+.record__duration {
+    font-size: 15px;
+    font-weight: 500;
+    color: #737373
+}
+
+.record > .MuiSvgIcon-root {
+    cursor: pointer;
+}
+
+@keyframes animate-record-circle {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

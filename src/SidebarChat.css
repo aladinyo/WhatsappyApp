@@ -1,0 +1,196 @@
+.sidebar__chat--container::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+.sidebar__chat--container > h2 {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-weight: 700;
+    color: black;
+    transition: opacity 400ms;
+}
+
+.sidebar__chat {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #f6f6f6;
+    width: 100%;
+    max-height: 87px;
+    transition: opacity 400ms;
+}
+
+.sidebar__chat:active {
+    background-color: #ebebeb;
+    transition: background-color 50ms;
+}
+
+.avatar__container {
+    position: relative;
+}
+
+.online {
+    position: absolute;
+    height: 13px;
+    width: 13px;
+    background-color: #06D755;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+}
+
+.sidebar__chat--info > h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+em {
+    font-weight: 900;
+    font-style: normal;
+}
+
+.sidebar__chat--info  p {
+    align-items: center;
+    color: #6f6f6f;
+    font-weight: 400;
+}
+
+.sidebar__chat--info span {
+    margin-left: 2px;
+    color: #6f6f6f;
+    vertical-align: middle;
+}
+
+.sidebar__chat--info  p svg {
+    color: #868686;
+    vertical-align: middle;
+}
+
+.sidebar__chat--info  p, .sidebar__chat--info h2, .sidebar__chat--info  p span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.sidebar__chat--info {
+    margin-left: 15px;
+}
+
+.sidebar__chat--unreadMessages {
+    position: relative;
+    height: 100%;
+    flex: 1;
+}
+
+.sidebar__chat--unreadMessages > div {
+    background-color: #06D755;
+    border-radius: 50%;
+    color: white;
+    width: 21px;
+    height: 21px;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.sidebar__chat--addRoom {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-color: #06D755;
+    border-radius: 50%;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: white;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.281);
+    transform: translateZ(456px);
+}
+
+.sidebar__chat--addRoom button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.sidebar__chat--addRoom .MuiSvgIcon-root {
+    transform: scale(1.3);
+    color: white;
+}
+
+.scrollFetch {
+    height: 90px !important;
+}
+
+.scrollFetch > div > .MuiCircularProgress-svg {
+    transform: scale(1);
+}
+
+.sidebar__loader  {
+    background-color: transparent !important;
+    height: 65% !important;
+}
+
+.sidebar__loader .MuiCircularProgress-svg {
+    transform: scale(2) !important;
+}
+
+.no-result {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: noresult-fade-in 400ms forwards;
+}
+
+.no-result > div > .MuiSvgIcon-root:nth-child(1) {
+    transform: scale(3);
+}
+
+.cancel-root {
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.no-result > div {
+    transform: scale(1.8);
+}
+
+.no-result > div > div {
+    transform: translate(-60%, -90%);
+}
+
+.animate {
+    opacity: 0;
+}
+
+@media (min-width: 760px) {
+    .sidebar__chat:hover {
+        background-color: #ebebeb;
+        transition: background-color 200ms;
+    } 
+}
+
+@keyframes noresult-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

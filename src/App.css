@@ -1,0 +1,263 @@
+:not(input) {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.app {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  height: 100vh;
+  transform-origin: 0% 0%;
+  position: relative;
+}
+
+.app__body {
+  background-color: #ededed;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  box-shadow: -1px 4px 20px 6px rgba(0,0,0,0.2);
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid lightgrey;
+}
+
+.loader__container {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app .MuiCircularProgress-svg {
+  transform: scale(2.5);
+}
+
+@media (max-width: 760px) {
+  .app__body {
+      display: block;
+      position: relative;
+      border-radius: 0;
+      background-color: white;
+      border-top: none;
+  }
+}
+
+/*
+
+  async function handler(snap) {
+    console.log("previous data: ", data.current);
+    handling.current[i.current] = true;
+    if (snap.docs?.length > 0) {
+      function catchError(e) {
+        console.log("errorrrrrr");
+        lastMessages.current = JSON.parse(localStorage.getItem("lastMessages"));
+        onlineStates.current = JSON.parse(localStorage.getItem("onlineStates"));
+        if (!lastMessages.current || !onlineStates.current) {
+          console.log("error: ", e);
+          data = [];
+        } else {
+          data.current = snap.docs.map((cur, i) => ({...cur.data(), state: onlineStates.current[i]?.data, id: cur.id, lastMessage: lastMessages.current[i].data}));
+        }
+      }
+      snap.docChanges().forEach(change => {
+        console.log("change: ", change);
+        console.log("change type: ", change.type);
+        console.log("data: ", change.doc.data());
+      })
+      if (window.navigator.onLine) {
+        try {
+          if (data.current === null && window.navigator.onLine) {
+            console.log("data was null");
+            data.current = [];
+            await Promise.all(snap.docs.map((doc, i) => {
+              return new Promise(async (resolve, reject) => {
+                try {
+                  const s = await db.collection("rooms").doc(doc.id).get();
+                  lastMessages.current[i] = {data: s.data().lastMessage, id: doc.id};
+                  if (doc.data().userID) {
+                     const m = await db.collection("users").doc(doc.data().userID).get();
+                     onlineStates.current[i] = {data: m.data()?.state, id: doc.id};
+                  }
+                  data.current[i] = {...doc.data(), state: onlineStates.current[i]?.data, id: doc.id, lastMessage: lastMessages.current[i].data}
+                  resolve(); 
+                } catch(e) {
+                  reject(e);
+                };
+              });
+            }));
+            console.log("data: ", data.current);
+          } else if (data.current !==  null) {
+            for (let change of snap.docChanges()) {
+              console.log("previous data: ", data.current);
+              console.log("previous onlineStates: ", onlineStates.current);
+              console.log("previous lastMessages: ", lastMessages.current);
+              const x = change.oldIndex !== change.newIndex;
+              const index = data.current.findIndex(cur => cur.id === change.doc.id);
+              console.log("index: ", index);
+              if (change.type !== "removed") {
+                console.log('1');
+                if (change.type === "modified" && x) {
+                  console.log('old index: ', change.oldIndex);
+                  console.log('new index: ', change.newIndex);
+                  console.log("change id: ", change.doc.id);
+                  data.current = data.current.filter(cur => cur.id !== change.doc.id);               
+                  onlineStates.current = data.current.filter(cur => cur.id !== change.doc.id);               
+                  lastMessages.current = data.current.filter(cur => cur.id !== change.doc.id);   
+                }
+                console.log('3');
+                const s = await db.collection("rooms").doc(change.doc.id).get();
+                if (x) lastMessages.current.unshift({data: s.data().lastMessage, id: change.doc.id})
+                  else lastMessages.current[index] = {data: s.data().lastMessage, id: change.doc.id};
+                console.log('4');
+                if (change.doc.data().userID) {
+                  console.log('5');
+                  const m = await db.collection("users").doc(change.doc.data().userID).get();
+                  if (x) onlineStates.current.unshift({data: m.data()?.state, id: change.doc.id})
+                    else onlineStates.current[index] = {data: m.data()?.state, id: change.doc.id};
+                  console.log('6');
+                } else {
+                  console.log('7');
+                  if (x) onlineStates.current.unshift(null) 
+                    else onlineStates.current[index] = null;
+                }
+                console.log('8');
+                if (x) data.current.unshift({...change.doc.data(), state: onlineStates.current[0]?.data, id: change.doc.id, lastMessage: lastMessages.current[0].data});
+                  else data.current[index] = {...change.doc.data(), state: onlineStates.current[0]?.data, id: change.doc.id, lastMessage: lastMessages.current[0].data};
+                console.log("data: ", data.current);
+                console.log("onlineStates: ", onlineStates.current);
+                console.log("lastMessages: ", lastMessages.current);
+              } else {
+                /*data.current.slice(index, 1);   
+                onlineStates.current.slice(index, 1);   
+                lastMessages.current.slice(index, 1);*//*
+                data.current = data.current.filter(cur => cur.id !== change.doc.id);               
+                onlineStates.current = data.current.filter(cur => cur.id !== change.doc.id);               
+                lastMessages.current = data.current.filter(cur => cur.id !== change.doc.id);               
+              }
+            }
+          }
+        } catch(e) {
+          catchError(e);
+        }
+      } else {
+        catchError("no internet connection")
+      }
+      console.log("setting chats");
+      setChats([...data.current]);
+    } else {
+      setChats([]);
+      data.current = [];
+    }
+    delete handling.current[i.current];
+    localStorage.setItem("lastMessages", JSON.stringify(lastMessages.current));
+    localStorage.setItem("onlineStates", JSON.stringify(onlineStates.current));
+  }
+
+  async function asyncSnap(snap) {
+    console.log("data from outside: ", data.current);
+    console.log("i before: ", i.current);
+    if (Object.keys(handling.current).length === 0) {
+      i.current++;
+      console.log("handler assigned, ", i.current);
+      handlePromise.current = handler(snap);
+    } else {
+      console.log("next handler, ", i.current);
+      const s = handlePromise.current;
+      handlePromise.current = new Promise(async r => {
+        console.log("handle promise executed, ", i.current);
+        i.current++;
+        await s;
+        await handler(snap);
+        console.log("handle promise resolved, ", i.current);
+        r();
+      })
+    }
+  }
+*/
+
+/*
+  useEffect(() => {
+    var s;
+    if (user && !checkingVersion) {
+      s = db.collection("users").doc(user.uid).collection("chats").orderBy("timestamp", "desc").onSnapshot(asyncSnap);
+      setOnlineStatus(user.uid);
+    }
+    return () => {
+      if (s) {
+        s();
+      }
+    }
+  }, [user, checkingVersion]);
+*/
+
+/*
+  useEffect(() => {
+    let s = null;
+    if (chats?.length > 0) {
+      s = chats.map((userChat, i, list) => {
+        return db.collection("users").doc(userChat.userID).onSnapshot(doc => {
+          const onlineState = doc.data()?.state;
+          if (userChat?.state !== onlineState) {
+            const arr = [...list]
+            arr[i] = {
+              ...userChat,
+              state: onlineState
+            };
+            setChats(arr);
+            onlineStates.current[i].data = onlineState;
+            data.current[i].state = onlineStates;
+            localStorage.setItem("onlineStates", JSON.stringify(onlineStates.current)); 
+          };
+        });
+      });
+    };
+    return () => {
+      if (s) {
+        s.forEach(cur => cur());
+      }
+    }
+  }, [chats])
+*/
+
+/*  function upadateRoomLastMessage(array) {
+    if (array?.length > 0) {
+      return array.map((userChat, i, list) => {
+        if (!userChat.unreadMessages && userChat.unreadMessages !== 0) {
+          return db.collection("rooms").doc(userChat.id).onSnapshot((doc) => {
+            const lMessage = doc.data()?.lastMessage;
+            console.log("last message: ", lMessage);
+            console.log("userchat: ", userChat);
+            if (userChat?.lastMessage !== lMessage) {
+              const arr = [...list];
+              arr[i] = {
+                ...userChat,
+                lastMessage: lMessage
+              }
+              setChats(arr);
+              lastMessages.current[i].data = lMessage;
+              data.current[i].lastMessage = lMessage;
+              localStorage.setItem("lastMessages", JSON.stringify(lastMessages.current));
+            } 
+          });
+        };
+      });
+    };
+  }
+
+    useEffect(() => {
+    z.current = upadateRoomLastMessage(chats);
+    return () => {
+      if (z.current?.length > 0) {
+        z.current.forEach(cur => cur ? cur() : null);
+      };
+    }
+  }, [chats]);*/
