@@ -6,9 +6,9 @@ it allows you to send messages talk with people and serach for them and many mor
 https://whatsappy-app.web.app/
 
 # Preview
-![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png)
-![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview2.png)
-![preview](https://github.com/aladinyo/WhatsappyApp/blob/main/preview3.png)
+  <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png" width="600">
+  <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview2.png" width="600">
+  <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview3.png" width="600">
 
 # Features of the app
 * Messaging users in real time.
@@ -40,4 +40,4 @@ After setting up the project in the root folder run "npm run start" to run the f
 # building the app
 To build the app run in the root folder "npm run build" you get the production code of your frontend in the build folder you can use it to host the app (you can set up firebase hosting for that) also you can host the backend folder in a node js hosting platform like heroku just make sure that your hosting service will run a worker (npm run index.js).
 
-## Thank you so much for checking this project this don't forget to put a star to encourage us.
+## Thank you so much for checking this project don't forget to put a star to encourage us.
