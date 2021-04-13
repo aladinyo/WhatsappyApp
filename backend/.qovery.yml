@@ -1,5 +1,0 @@
-application:
-  name: "whatsappy-app-backend"
-  project: "whatsappy-app-backend"
-  organization: "QoveryCommunity"
-  dockerfile: /DockerFile
