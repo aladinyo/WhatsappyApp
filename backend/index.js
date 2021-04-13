@@ -1,6 +1,6 @@
 const admin = require("firebase-admin");
 const algoliasearch = require('algoliasearch');
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require("./serviceAccountKey.json");/*download your own service account key from firebase*/
 const client = algoliasearch("XXXXX", "xxxxxxxxxxxxxx"); /*use your own keys*/
 const index = client.initIndex('whatsappy-app');
 
