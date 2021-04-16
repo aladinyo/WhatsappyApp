@@ -77,7 +77,8 @@ function Sidebar(props) {
         };
         const result = (await index.search(searchInput)).hits.map(cur => cur.objectID !== user.uid ? {
             ...cur,
-            id : cur.photoURL ? cur.objectID > user.uid ? cur.objectID + user.uid : user.uid + cur.objectID : cur.objectID
+            id : cur.photoURL ? cur.objectID > user.uid ? cur.objectID + user.uid : user.uid + cur.objectID : cur.objectID,
+            userID: cur.photoURL ? cur.objectID : null
         } : null);
         //console.log(result);
         setSearchList(result);
