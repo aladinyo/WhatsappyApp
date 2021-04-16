@@ -3,8 +3,8 @@ WhatsappyApp is a whatsapp clone progressive web application built with react no
 it allows you to send messages talk with people and serach for them and many more.
 
 # Live Demo
-https://whatsappy-app.web.app/  ALLOW NOTIFICATIONS !!!
-THE APP MAY NOT RUN BECAUSE FREE LIMITS OF FIREBASE HAS BEEN EXCEEDED !!
+https://whatsappy-app.web.app/  ALLOW NOTIFICATIONS !!!  
+the app may not run because free limits of firebase or hosting service has been exceeded !!
 
 # Preview
   <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png" width="600">
