@@ -277,23 +277,20 @@ function Chat({ animState, unreadMessages, b }) {
     };
 
     const deleteRoom = async () => {
-        if (window.navigator.onLine) {
+	if (window.navigator.onLine) {
             setOpenMenu(false);
             setDeleting(true);
             try {
                 const room = db.collection("rooms").doc(roomID);
                 const fetchedMessages = await room.collection("messages").get();
                 const fetchedAudios = [];
+                const fecthedImages = [];
                 fetchedMessages.docs.forEach(doc => {
                     if (doc.data().audioName) {
                         fetchedAudios.push(doc.data().audioName);
-                    };
-                });
-                const fecthedImages = [];
-                fetchedMessages.docs.forEach(doc => {
-                    if (doc.data().imageName) {
+                    } else if (doc.data().imageName) {
                         fecthedImages.push(doc.data().imageName);
-                    };
+                    }
                 });
                 var usersChats = [];
                 if (state.userID) {
@@ -310,7 +307,8 @@ function Chat({ animState, unreadMessages, b }) {
                 ]);
                 page.width <= 760 ? history.goBack() : history.replace("/chats");
             } catch(e) {
-                //console.log(e.message);
+                console.log(e.message);
+                page.width <= 760 ? history.goBack() : history.replace("/chats");
             };
         } else {
             alert("No access to internet !!!");
