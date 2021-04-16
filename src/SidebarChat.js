@@ -1,7 +1,6 @@
 import {useEffect,  memo, useRef, useState} from 'react';
 import { Avatar } from '@material-ui/core';
 import { CancelOutlined, SearchOutlined, Photo, MicRounded } from '@material-ui/icons';
-import { useLocation } from 'react-router-dom';
 import './SidebarChat.css';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -11,7 +10,6 @@ function SidebarChat({ dataList, title, path, fetchList}) {
     const [{roomsData, page, pathID}, dispatch] = useStateValue();
     const [scrollFetch, setScrollFetch] = useState(false);
     const [list, setList] = useState(null);
-    const location = useLocation();
     const sidebarChatContainer = useRef();
 
     useEffect(() => {
