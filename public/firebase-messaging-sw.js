@@ -1,16 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.0.1/firebase-messaging.js');
 
-firebase.initializeApp({
-    apiKey: "AIzaSyDKpDICrGpe4Afk1j0ffc8dlUG3jWKpgx0",
-    authDomain: "whatsappy-app.firebaseapp.com",
-    databaseURL: "https://whatsappy-app.firebaseio.com",
-    projectId: "whatsappy-app",
-    storageBucket: "whatsappy-app.appspot.com",
-    messagingSenderId: "468435242245",
-    appId: "1:468435242245:web:737f34ce5b750648aa7b6c",
-    measurementId: "G-QL39RMK58H"
-})
+firebase.initializeApp({}) /*use your own configuration*/
 
 const messaging = firebase.messaging();
 
