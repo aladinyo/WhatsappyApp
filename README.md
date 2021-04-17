@@ -4,7 +4,8 @@ it allows you to send messages talk with people and serach for them and many mor
 
 # Live Demo
 https://whatsappy-app.web.app/  ALLOW NOTIFICATIONS !!!  
-the app may not run because free limits of firebase or hosting service has been exceeded !!
+the app may not run because free limits of firebase or hosting service has been exceeded !!  
+Warning: this app is just an open source project it doesn't have the feature of deleting your account also you will sign in with your google account.
 
 # Preview
   <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png" width="600">
