@@ -1,11 +1,12 @@
 # WhatsappyApp
 WhatsappyApp is a whatsapp clone progressive web application built with react nodejs and firebase
-it allows you to send messages talk with people and serach for them and many more.
+it allows you to send messages talk with people and serach for them and many more.  
+
+Warning: this app is just an open source project it doesn't have the feature of deleting your account also you will sign in with your google account so use a fake one you are responsible of giving your data.
 
 # Live Demo
 https://whatsappy-app.web.app/  ALLOW NOTIFICATIONS !!!  
 the app may not run because free limits of firebase or hosting service has been exceeded !!  
-Warning: this app is just an open source project it doesn't have the feature of deleting your account also you will sign in with your google account so use a fake one.
 
 # Preview
   <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png" width="600">
