@@ -5,6 +5,7 @@ it allows you to send messages talk with people and serach for them and many mor
 this app is just an open source project and it doesn't have the feature of deleting your account also you will sign in with your google account so use a fake one you are responsible of giving your data.
 
 # Live Demo
+Search for "alaa" and talk with me.  
 https://whatsappy-app.web.app/  ALLOW NOTIFICATIONS !!!  
 the app may not run because free limits of firebase or hosting service has been exceeded !!  
 
