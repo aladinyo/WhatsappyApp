@@ -37,7 +37,6 @@ function App() {
   const [{ user, path, pathID, roomsData, page }, dispatch, actionTypes] = useStateValue();
   const [loader, setLoader] = useState(true);
   const [pwaEvent, setPwaEvent] = useState(undefined);
-  const [firebaseLoaded, setFirebaseLoaded] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [checkingVersion, setCheckingVerison] = useState(true);
   const [chats, setChats] = useState(null);
@@ -146,7 +145,7 @@ function App() {
         })
       }
     })
-  }, [firebaseLoaded])
+  }, [])
 
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
