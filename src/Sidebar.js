@@ -6,25 +6,22 @@ import db, { auth, createTimestamp } from "./firebase";
 import { useStateValue } from './StateProvider';
 import { NavLink, Route, useHistory, Switch } from 'react-router-dom';
 import algoliasearch from "algoliasearch";
-import useFetchData from "./useFetchData.js";
 import './Sidebar.css';
-import useRoomsData from './useRoomsData';
 import audio from './notification.mp3'
 
 const index = algoliasearch("HGSCPXF5HH", "5dcbf917421397576df267019b9b4c87").initIndex('whatsappy-app');
 
-function Sidebar(props) {
+function Sidebar({ chats, pwa, rooms, fetchRooms, users, fetchUsers }) {
     const [searchList, setSearchList] = useState(null);
     const [searchInput, setSearchInput] = useState("");
     const [menu, setMenu] = useState(1);
     const [mounted, setMounted] = useState(false);
     const [{ user, page, pathID }] = useStateValue();
-    const [setRoomsData] = useRoomsData();
     let history = useHistory();
     const notification = new Audio(audio);
     const prevUnreadMessages = useRef((() => {
         const data = {};
-        props.chats.forEach(cur => cur.unreadMessages || cur.unreadMessages === 0 ? data[cur.id] = cur.unreadMessages : null);
+        chats.forEach(cur => cur.unreadMessages || cur.unreadMessages === 0 ? data[cur.id] = cur.unreadMessages : null);
         return data;
     })());
 
@@ -37,31 +34,6 @@ function Sidebar(props) {
     } else {
         Nav = NavLink;
     }
-
-    const [rooms, fetchRooms] = useFetchData(30, db.collection("rooms").orderBy("timestamp", "desc"), true, snap => {
-        return snap.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-    }, "rooms");
-
-    const [users, fetchUsers] = useFetchData(30, db.collection("users").orderBy("timestamp", "desc"), true, snap => {
-        const data = [];
-        if (snap.docs.length > 0) {
-            snap.docs.forEach((doc) => {
-                const id = doc.id > user.uid ? doc.id + user.uid : user.uid + doc.id;
-                if (doc.id !== user.uid) {
-                    data.push({
-                        ...doc.data(),
-                        id,
-                        userID: doc.id,
-                    });
-                    setRoomsData(doc.id, id);
-                };
-            });
-        };
-        return data;
-    }, "users");
 
     async function search(e) {
         if (e) {
@@ -77,7 +49,7 @@ function Sidebar(props) {
         };
         const result = (await index.search(searchInput)).hits.map(cur => cur.objectID !== user.uid ? {
             ...cur,
-            id : cur.photoURL ? cur.objectID > user.uid ? cur.objectID + user.uid : user.uid + cur.objectID : cur.objectID,
+            id: cur.photoURL ? cur.objectID > user.uid ? cur.objectID + user.uid : user.uid + cur.objectID : cur.objectID,
             userID: cur.photoURL ? cur.objectID : null
         } : null);
         //console.log(result);
@@ -97,7 +69,7 @@ function Sidebar(props) {
 
     useEffect(() => {
         const data = {};
-        props.chats.forEach(cur => {
+        chats.forEach(cur => {
             if (cur.unreadMessages || cur.unreadMessages === 0) {
                 if ((cur.unreadMessages > prevUnreadMessages.current[cur.id] || !prevUnreadMessages.current[cur.id] && prevUnreadMessages.current[cur.id] !== 0) && pathID !== cur.id) {
                     notification.play();
@@ -106,28 +78,19 @@ function Sidebar(props) {
             };
         });
         prevUnreadMessages.current = data;
-    }, [props.chats, pathID]);
+    }, [chats, pathID]);
 
     useEffect(() => {
-        if (page.width <= 760 && props.chats && !mounted ) {
+        if (page.width <= 760 && chats && !mounted) {
             setMounted(true);
             setTimeout(() => {
-                document.querySelector('.sidebar').classList.add('side'); 
+                document.querySelector('.sidebar').classList.add('side');
             }, 10);
         };
-    }, [props.chats, mounted]);
+    }, [chats, mounted]);
 
-    useEffect(() => {
-        const unsub1 = fetchRooms(() => null);
-        const unsub2 = fetchUsers(() => null);
-        return () => {
-            unsub1.current();
-            unsub2.current();
-        }
-    }, []);
-    
     return (
-        <div ref={props.ref} className="sidebar" style={{
+        <div className="sidebar" style={{
             minHeight: page.width <= 760 ? page.height : "auto"
         }}>
             <div className="sidebar__header">
@@ -137,9 +100,9 @@ function Sidebar(props) {
                 </div>
                 <div className="sidebar__header--right">
                     <IconButton onClick={() => {
-                        if (props.pwa) {
+                        if (pwa) {
                             console.log("prompting the pwa event")
-                            props.pwa.prompt()
+                            pwa.prompt()
                         } else {
                             console.log("pwa event is undefined")
                         }
@@ -148,7 +111,7 @@ function Sidebar(props) {
                     </IconButton>
                     <IconButton onClick={() => {
                         auth.signOut();
-                        db.doc('/users/' + user.uid).set({state: "offline"}, {merge: true});
+                        db.doc('/users/' + user.uid).set({ state: "offline" }, { merge: true });
                         history.replace("/chats")
                     }} >
                         <LogOut />
@@ -162,11 +125,11 @@ function Sidebar(props) {
                     <SearchOutlined />
                     <input
                         value={searchInput}
-                        onChange={(e) => setSearchInput(e.target.value)} 
-                        placeholder="Search for users or rooms" 
-                        type="text" 
+                        onChange={(e) => setSearchInput(e.target.value)}
+                        placeholder="Search for users or rooms"
+                        type="text"
                     />
-                    <button style={{display: "none"}} type="submit" onClick={search}></button>
+                    <button style={{ display: "none" }} type="submit" onClick={search}></button>
                 </form>
             </div>
 
@@ -219,21 +182,21 @@ function Sidebar(props) {
                             <SidebarChat key="search" dataList={searchList} title="Search Result" path="/search" />
                         </Route>
                         <Route path="/chats" >
-                            <SidebarChat key="chats" dataList={props.chats} title="Chats" path="/chats" />
+                            <SidebarChat key="chats" dataList={chats} title="Chats" path="/chats" />
                         </Route>
                     </Switch>
                 </>
-            :
-                    menu === 1 ?
-                        <SidebarChat key="chats" dataList={props.chats} title="Chats" />
+                :
+                menu === 1 ?
+                    <SidebarChat key="chats" dataList={chats} title="Chats" />
                     : menu === 2 ?
-                        <SidebarChat key="rooms" fetchList={fetchRooms}  dataList={rooms} title="Rooms" />
-                    : menu === 3 ?
-                        <SidebarChat key="users" fetchList={fetchUsers} dataList={users} title="Users" />
-                    : menu === 4 ? 
-                        <SidebarChat key="search" dataList={searchList} title="Search Result" />
-                     : null    
-                }
+                        <SidebarChat key="rooms" fetchList={fetchRooms} dataList={rooms} title="Rooms" />
+                        : menu === 3 ?
+                            <SidebarChat key="users" fetchList={fetchUsers} dataList={users} title="Users" />
+                            : menu === 4 ?
+                                <SidebarChat key="search" dataList={searchList} title="Search Result" />
+                                : null
+            }
             <div className="sidebar__chat--addRoom" onClick={createChat}>
                 <IconButton >
                     <Add />
