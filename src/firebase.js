@@ -8,8 +8,9 @@ import "firebase/storage"
 const firebaseConfig = {};/*use your own configuration*/
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-const enablePersistence = firebaseApp.firestore().enablePersistence();
+/*you can enable persistence to allow the user to see previous data when he's offline but it will make your queries very slow which leads
+to bad user experience so I suggest you implement your own offline support by caching the data and retrieving them when the user is offline*/
+//firebaseApp.firestore().enablePersistence();
 const db = firebaseApp.firestore();
 const db2 = firebaseApp.database();
 const auth = firebaseApp.auth();
@@ -22,11 +23,6 @@ const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 const storage = firebase.storage().ref("images");
 const audioStorage = firebase.storage().ref("audios");
 
-async function loadFirebase(setFirebaseLoaded) {
-	await enablePersistence;
-	await db;
-	setFirebaseLoaded(true);
-}
 //db.disableNetwork();
 
 export {loadFirebase, auth , provider, createTimestamp, messaging, fieldIncrement, arrayUnion, storage, audioStorage, db2, createTimestamp2};
