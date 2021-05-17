@@ -42,7 +42,7 @@ function SidebarChat({ dataList, title, path, fetchList}) {
                 Array.from(document.querySelectorAll('.animate')).forEach((cur,i) => {
                     setTimeout(() => {
                         cur.classList.remove("animate");
-                    }, 100 * i);
+                    }, 50 * i);
                 });
             }, 10);
         };
