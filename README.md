@@ -28,6 +28,7 @@ the app may not run because free limits of firebase or hosting service has been 
 * You can see the unread messages.
 * You will have a seen at the bottom if the user saw your message.
 * You have an arrow button that allows you to scroll down the chat you also see the unread messages in it.
+* You can fetch 30 messages in a chat and if you scroll up you will fetch more messages.
 * The audio slider is grey when you send an audio message and is green when you receive one and becomes blue if the receiver plays the audio.
 * The audio player allows you to see the full time of the audio and if you play it you will see the current time.
 * You can receive notifications if a user sent you a message.
