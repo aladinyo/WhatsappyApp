@@ -4,7 +4,8 @@
   "description": "Testing Firebase cloud messaging with nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "keywords": [
     "firebase",
@@ -17,5 +18,8 @@
     "firebase": "^8.2.9",
     "firebase-admin": "^9.5.0",
     "firebase-functions": "^3.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
