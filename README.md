@@ -9,11 +9,6 @@ Search for "alaa eddine" and talk with me.
 https://whatsappy-app.web.app/  ALLOW NOTIFICATIONS !!!  
 the app may not run because free limits of firebase or hosting service has been exceeded !!  
 
-# Preview
-  <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview1.png" width="600">
-  <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview2.png" width="600">
-  <img src="https://github.com/aladinyo/WhatsappyApp/blob/main/preview3.png" width="600">
-
 # Features of the app
 * Messaging users in real time.
 * You can text messages.
